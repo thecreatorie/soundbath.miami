@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOUNDBATH — Design Direction</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: #2C2825;
+    background: #FAF8F5;
+    line-height: 1.6;
+  }
+
+  /* --- Header --- */
+  .header {
+    text-align: center;
+    padding: 80px 40px 60px;
+    border-bottom: 1px solid #E8E2DA;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #2C2825;
+    margin-bottom: 16px;
+  }
+  .header p {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #9A928A;
+  }
+
+  /* --- Sections --- */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #9A928A;
+    margin-bottom: 40px;
+  }
+
+  /* --- Color Palette --- */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .color-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+  .color-swatch {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .color-info {
+    padding: 16px;
+  }
+  .color-name {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .color-hex {
+    font-size: 12px;
+    color: #9A928A;
+    font-family: 'Inter', monospace;
+  }
+  .color-role {
+    font-size: 11px;
+    color: #B8B0A6;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* --- Typography --- */
+  .type-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .type-sample {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: baseline;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #E8E2DA;
+  }
+  .type-sample:last-child { border-bottom: none; }
+  .type-meta {
+    font-size: 12px;
+    color: #9A928A;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .type-meta span {
+    display: block;
+    margin-top: 4px;
+    color: #B8B0A6;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .type-display-hero {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 1.1;
+    color: #2C2825;
+  }
+  .type-display-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.3;
+    color: #2C2825;
+  }
+  .type-body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #4A4540;
+    max-width: 520px;
+  }
+  .type-accent {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C4652E;
+  }
+
+  /* --- Textures & Mood --- */
+  .mood-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .mood-tile {
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mood-tile.tall { grid-row: span 2; aspect-ratio: auto; }
+  .mood-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Texture simulations */
+  .texture-stone {
+    background: linear-gradient(135deg, #C4B9AB 0%, #D5C9BA 30%, #BFB3A4 60%, #C8BDB0 100%);
+  }
+  .texture-water {
+    background: linear-gradient(180deg, #B8C5C0 0%, #9AB0A8 40%, #88A098 70%, #7A958C 100%);
+  }
+  .texture-warmth {
+    background: linear-gradient(135deg, #C4652E 0%, #D4793F 40%, #E08A4F 70%, #C4652E 100%);
+  }
+  .texture-sand {
+    background: linear-gradient(135deg, #E8DDD0 0%, #DDD0C0 50%, #E5D9CC 100%);
+  }
+  .texture-dark {
+    background: linear-gradient(135deg, #2C2825 0%, #3D3833 40%, #2C2825 100%);
+  }
+  .texture-cream {
+    background: linear-gradient(135deg, #FAF8F5 0%, #F0EBE3 50%, #FAF8F5 100%);
+    border: 1px solid #E8E2DA;
+  }
+  .texture-cream .mood-label { color: #9A928A; }
+  .texture-terracotta {
+    background: linear-gradient(135deg, #A8543A 0%, #C4652E 50%, #B35A2A 100%);
+  }
+
+  /* --- Landing Page Mockup --- */
+  .mockup-container {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  /* Browser chrome */
+  .browser-bar {
+    background: #F5F0EB;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #E8E2DA;
+  }
+  .browser-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #D5C9BA;
+  }
+  .browser-url {
+    margin-left: 16px;
+    font-size: 12px;
+    color: #9A928A;
+    font-family: 'Inter', monospace;
+  }
+
+  /* Hero section */
+  .mock-hero {
+    background: linear-gradient(180deg, #2C2825 0%, #3D3833 100%);
+    padding: 120px 60px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(196,101,46,0.15) 0%, transparent 60%);
+  }
+  .mock-hero-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #C4652E;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .mock-hero h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 56px;
+    color: #FAF8F5;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mock-hero p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #B8B0A6;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+    position: relative;
+  }
+  .mock-cta {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FAF8F5;
+    border: 1px solid rgba(250,248,245,0.3);
+    padding: 16px 40px;
+    border-radius: 0;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .mock-cta:hover {
+    border-color: #C4652E;
+    color: #C4652E;
+  }
+
+  /* Concept section */
+  .mock-concept {
+    background: #FAF8F5;
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .mock-concept-visual {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #C4B9AB 0%, #B8C5C0 50%, #9AB0A8 100%);
+    border-radius: 8px;
+  }
+  .mock-concept-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: #2C2825;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .mock-concept-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #6B635A;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .mock-concept-accent {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C4652E;
+    margin-top: 24px;
+  }
+
+  /* Signup section */
+  .mock-signup {
+    background: #2C2825;
+    padding: 80px 60px;
+    text-align: center;
+  }
+  .mock-signup h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #FAF8F5;
+    margin-bottom: 16px;
+  }
+  .mock-signup p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #9A928A;
+    margin-bottom: 40px;
+  }
+  .mock-form {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+  .mock-input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(250,248,245,0.08);
+    border: 1px solid rgba(250,248,245,0.15);
+    border-right: none;
+    color: #FAF8F5;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+  }
+  .mock-input::placeholder { color: #6B635A; }
+  .mock-submit {
+    padding: 14px 28px;
+    background: #C4652E;
+    border: 1px solid #C4652E;
+    color: #FAF8F5;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .mock-footer {
+    background: #2C2825;
+    border-top: 1px solid rgba(250,248,245,0.06);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mock-footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #6B635A;
+  }
+  .mock-footer-social {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #6B635A;
+    letter-spacing: 2px;
+  }
+
+  /* --- Design Notes --- */
+  .notes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .note-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+  .note-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C4652E;
+    margin-bottom: 16px;
+  }
+  .note-card p {
+    font-size: 14px;
+    color: #6B635A;
+    line-height: 1.7;
+  }
+
+  /* --- Divider --- */
+  .divider {
+    border: none;
+    border-top: 1px solid #E8E2DA;
+    margin: 0;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .type-sample { grid-template-columns: 1fr; gap: 16px; }
+    .mood-grid { grid-template-columns: 1fr 1fr; }
+    .mood-tile.tall { grid-row: span 1; aspect-ratio: 4/3; }
+    .mock-concept { grid-template-columns: 1fr; gap: 40px; }
+    .notes-grid { grid-template-columns: 1fr; }
+    .type-display-hero { font-size: 40px; }
+    .mock-hero h2 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Soundbath</h1>
+    <p>Design Direction &mdash; Moodboard</p>
+  </div>
+
+  <!-- Color Palette -->
+  <div class="section">
+    <div class="section-title">Color Palette</div>
+    <div class="palette-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #FAF8F5;border-bottom:1px solid #E8E2DA;"></div>
+        <div class="color-info">
+          <div class="color-name">Warm White</div>
+          <div class="color-hex">#FAF8F5</div>
+          <div class="color-role">Primary background</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #2C2825;"></div>
+        <div class="color-info">
+          <div class="color-name">Charcoal Earth</div>
+          <div class="color-hex">#2C2825</div>
+          <div class="color-role">Dark sections &amp; text</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #C4652E; color: white;"></div>
+        <div class="color-info">
+          <div class="color-name">Burnt Orange</div>
+          <div class="color-hex">#C4652E</div>
+          <div class="color-role">Accent &amp; CTA</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #D5C9BA;"></div>
+        <div class="color-info">
+          <div class="color-name">Sandstone</div>
+          <div class="color-hex">#D5C9BA</div>
+          <div class="color-role">Borders &amp; subtle bg</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #9AB0A8;"></div>
+        <div class="color-info">
+          <div class="color-name">Sage Mineral</div>
+          <div class="color-hex">#9AB0A8</div>
+          <div class="color-role">Secondary accent (water)</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #6B635A;"></div>
+        <div class="color-info">
+          <div class="color-name">Warm Grey</div>
+          <div class="color-hex">#6B635A</div>
+          <div class="color-role">Body text &amp; captions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Typography -->
+  <div class="section">
+    <div class="section-title">Typography</div>
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-meta">
+          Display / Headlines
+          <span>Cormorant Garamond Light</span>
+        </div>
+        <div class="type-display-hero">Where sound<br>meets stillness</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          Subheadings
+          <span>Cormorant Garamond Regular</span>
+        </div>
+        <div class="type-display-sub">A thermal wellness experience built around sound, water, and the kind of human connection Miami has been missing.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          Body Copy
+          <span>DM Sans Light</span>
+        </div>
+        <div class="type-body">No phones. No performative wellness. Just depth. We're building something that doesn't exist yet — a place where sound and water create the conditions for real presence.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-meta">
+          Labels &amp; CTAs
+          <span>Inter Regular, tracked</span>
+        </div>
+        <div class="type-accent">Join the Founding Circle &nbsp;&nbsp;&rarr;</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Textures & Mood -->
+  <div class="section">
+    <div class="section-title">Textures &amp; Mood</div>
+    <div class="mood-grid">
+      <div class="mood-tile tall texture-stone">
+        <span class="mood-label">Natural Stone</span>
+      </div>
+      <div class="mood-tile texture-water">
+        <span class="mood-label">Thermal Water</span>
+      </div>
+      <div class="mood-tile texture-warmth">
+        <span class="mood-label">Warmth &amp; Glow</span>
+      </div>
+      <div class="mood-tile texture-dark">
+        <span class="mood-label">Deep Contrast</span>
+      </div>
+      <div class="mood-tile texture-sand">
+        <span class="mood-label">Sand &amp; Earth</span>
+      </div>
+      <div class="mood-tile texture-cream">
+        <span class="mood-label">Quiet Space</span>
+      </div>
+      <div class="mood-tile texture-terracotta">
+        <span class="mood-label">Terracotta Heat</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Landing Page Mockup -->
+  <div class="section">
+    <div class="section-title">Landing Page &mdash; Layout Concept</div>
+    <div class="mockup-container">
+      <div class="browser-bar">
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+        <span class="browser-url">thisissoundbath.com</span>
+      </div>
+
+      <!-- Hero -->
+      <div class="mock-hero">
+        <div class="mock-hero-label">Coming to Miami</div>
+        <h2>Where sound meets stillness</h2>
+        <p>A thermal wellness experience unlike anything that exists. No phones. No noise. Just presence, sound, and water.</p>
+        <a class="mock-cta" href="#">Join the Founding Circle</a>
+      </div>
+
+      <!-- Concept -->
+      <div class="mock-concept">
+        <div class="mock-concept-visual"></div>
+        <div class="mock-concept-text">
+          <h3>The opposite of everything else</h3>
+          <p>SOUNDBATH is a new kind of gathering space — thermal pools, sound healing chambers, and curated music experiences designed to address what every other wellness space ignores: the need for real, meaningful human connection.</p>
+          <p>We're not building a spa. We're building a platform for presence.</p>
+          <div class="mock-concept-accent">Miami &mdash; Opening 2027</div>
+        </div>
+      </div>
+
+      <!-- Signup -->
+      <div class="mock-signup">
+        <h3>Be the first to know</h3>
+        <p>Founding members receive early access, exclusive events, and preferential rates.</p>
+        <div class="mock-form">
+          <div class="mock-input" style="display:flex;align-items:center;">your@email.com</div>
+          <div class="mock-submit">Get Access</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="mock-footer">
+        <div class="mock-footer-brand">Soundbath</div>
+        <div class="mock-footer-social">Instagram &nbsp;&middot;&nbsp; TikTok</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Design Notes -->
+  <div class="section">
+    <div class="section-title">Design Notes for Framer Build</div>
+    <div class="notes-grid">
+      <div class="note-card">
+        <h4>Photography Direction</h4>
+        <p>When imagery is ready: close-up textures of stone and water, steam rising, warm amber light. No faces in the hero — keep it abstract and sensory. People can appear further down the page once trust is established. Think thermal bath photography from Vals Therme or Aman resorts.</p>
+      </div>
+      <div class="note-card">
+        <h4>Animation &amp; Motion</h4>
+        <p>Slow, intentional. Parallax scroll on the hero image. Text fades in gently on scroll — nothing bounces or slides. The pace of the site should feel like being in the water: unhurried. Consider a subtle water ripple or steam animation on hover for the CTA.</p>
+      </div>
+      <div class="note-card">
+        <h4>Orange Usage</h4>
+        <p>Orange appears only on interactive elements and moments of emphasis: the CTA button, the "Coming to Miami" label, and text accents. Never as a background fill for large sections. It should feel like a warm glow — the ember, not the fire. Use sparingly so it draws the eye exactly where you want it.</p>
+      </div>
+      <div class="note-card">
+        <h4>Framer Template Direction</h4>
+        <p>Search Framer templates for: luxury hotel, resort, wellness, or architecture portfolios. Look for templates with dark hero sections, editorial typography, and generous whitespace. Customize the palette to these colors. Avoid anything with bright gradients, rounded playful buttons, or tech-startup energy.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding: 60px 40px; color: #B8B0A6; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
+    Soundbath &mdash; Phase 1 Design Direction &mdash; April 2026
+  </div>
+
+</body>
+</html>
