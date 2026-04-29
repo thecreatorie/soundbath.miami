@@ -92,11 +92,6 @@
     position: relative;
   }
 
-  /* Inline SVG wordmark scales to fit any container width.
-     viewBox + preserveAspectRatio="xMidYMid meet" + width:100% guarantees
-     edge-to-edge rendering on every viewport. textLength + lengthAdjust
-     stretches the glyph row so it always spans the full SVG width even
-     if Fraunces hasn't loaded yet (Georgia fallback fits the same width). */
   .wordmark-svg {
     display: block;
     width: 100%;
@@ -121,14 +116,13 @@
   }
 
   /* ============================
-     SECTION 1 — single line, held in white space
+     SECTION 1 — single line, breathing room (tightened)
      ============================ */
   .section-line {
-    min-height: 100vh;
+    padding: clamp(96px, 14vh, 160px) 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 32px;
     text-align: center;
   }
 
@@ -138,10 +132,10 @@
     font-weight: 400;
     font-style: italic;
     color: var(--cream);
-    font-size: clamp(28px, 5vw, 56px);
-    line-height: 1.2;
+    font-size: clamp(24px, 3.4vw, 40px);
+    line-height: 1.25;
     letter-spacing: -0.01em;
-    max-width: 18ch;
+    max-width: 22ch;
   }
 
   /* ============================
@@ -205,15 +199,49 @@
     border-bottom-color: var(--vermilion) !important;
   }
 
+  /* Field labels (First Name, Email, Interest Area, etc.) — CREAM for contrast */
   .form-inner label {
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     font-weight: 400 !important;
     font-size: 11px !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
-    color: var(--vermilion) !important;
+    color: var(--cream) !important;
     margin-bottom: 8px !important;
     display: block !important;
+  }
+
+  /* Required-field asterisk stays vermilion as a small accent */
+  .form-inner label .hs-form-required,
+  .form-inner .hs-form-required {
+    color: var(--vermilion) !important;
+    margin-left: 2px !important;
+  }
+
+  /* Checkbox + radio option labels (e.g. Sound Healing, Community) — also cream */
+  .form-inner .hs-form-checkbox-display,
+  .form-inner .hs-form-radio-display,
+  .form-inner .hs-form-booleancheckbox-display,
+  .form-inner .hs-form-checkbox-display span,
+  .form-inner .hs-form-radio-display span,
+  .form-inner .hs-form-booleancheckbox-display span,
+  .form-inner ul.inputs-list label,
+  .form-inner ul.inputs-list label span {
+    color: var(--cream) !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+  }
+
+  /* Tighter line-height on the option list */
+  .form-inner ul.inputs-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .form-inner ul.inputs-list li {
+    margin-bottom: 8px !important;
   }
 
   .form-inner .hs-error-msgs label,
@@ -254,20 +282,19 @@
     border-color: var(--cream) !important;
   }
 
-  /* Consent + legal checkbox row */
   .form-inner .hs-form-booleancheckbox-display,
   .form-inner .legal-consent-container {
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     font-size: 12px !important;
-    color: var(--cream-dim) !important;
+    color: var(--cream) !important;
     line-height: 1.55 !important;
   }
 
-  .form-inner input[type="checkbox"] {
+  .form-inner input[type="checkbox"],
+  .form-inner input[type="radio"] {
     accent-color: var(--vermilion) !important;
   }
 
-  /* Post-submit message — replaces form in place */
   .form-inner .submitted-message {
     font-family: 'Fraunces', Georgia, serif !important;
     font-style: italic !important;
@@ -277,7 +304,6 @@
     line-height: 1.2 !important;
   }
 
-  /* Spacing for HubSpot field wrappers */
   .form-inner .hs-form-field,
   .form-inner fieldset {
     margin-bottom: 28px !important;
@@ -319,7 +345,7 @@
     .header { padding: 18px 20px; font-size: 10px; letter-spacing: 0.14em; }
     .hero { padding: 0 20px 36px; }
     .hero-subline { font-size: 12px; }
-    .section-line { padding: 100px 20px; }
+    .section-line { padding: 80px 20px; }
     .form-section { padding: 80px 20px; }
     .footer { padding: 24px 20px; }
     .footer-top, .footer-bottom {
