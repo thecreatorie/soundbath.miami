@@ -16,8 +16,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- HubSpot Form Embed Script -->
-<script src="https://js-na2.hsforms.net/forms/embed/245902043.js" defer></script>
+<!-- HubSpot Forms — LEGACY v2 inline embed.
+     This renders the form HTML directly in the page DOM (NOT an iframe),
+     which lets our page CSS style every field, label, and button. -->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
 
 <style>
   /* ============================
@@ -37,8 +39,9 @@
     --vermilion:      #E94B26;
     --vermilion-mute: #A93620;
     --cream:          #F4E8D8;
-    --cream-dim:      rgba(244,232,216,0.55);
-    --cream-line:     rgba(244,232,216,0.18);
+    --white:          #FFFFFF;
+    --white-dim:      rgba(255,255,255,0.55);
+    --white-line:     rgba(255,255,255,0.22);
   }
 
   body {
@@ -132,36 +135,19 @@
      ============================ */
   .form-section {
     padding: clamp(80px, 12vh, 140px) 32px;
-    border-top: 1px solid var(--cream-line);
+    border-top: 1px solid var(--white-line);
   }
 
   .form-inner {
     max-width: 560px;
     margin: 0 auto;
-
-    /* Override HubSpot's CSS custom properties at this scope.
-       The new HubSpot embed exposes these vars to control colors. */
-    --hsf-color-text:           #F4E8D8 !important;
-    --hsf-color-label:          #F4E8D8 !important;
-    --hsf-color-input-label:    #F4E8D8 !important;
-    --hsf-color-input-text:     #F4E8D8 !important;
-    --hsf-color-placeholder:    rgba(244,232,216,0.55) !important;
-    --hsf-color-input-border:   rgba(244,232,216,0.18) !important;
-    --hsf-color-button-bg:      #E94B26 !important;
-    --hsf-color-button-text:    #F4E8D8 !important;
-    --hsf-color-error:          #E94B26 !important;
-    --cf-color-label:           #F4E8D8 !important;
-    --cf-color-input-text:      #F4E8D8 !important;
-    --cf-color-input-bg:        transparent !important;
-    --cf-color-button-bg:       #E94B26 !important;
-    --cf-color-button-text:     #F4E8D8 !important;
   }
 
   .form-headline {
     font-family: 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;
     font-weight: 500;
-    color: var(--cream);
+    color: var(--white);
     font-size: clamp(36px, 6vw, 64px);
     line-height: 1.05;
     letter-spacing: -0.015em;
@@ -169,48 +155,33 @@
   }
 
   /* ============================
-     LABEL TEXT — bulletproof override
-
-     HubSpot wraps label text inside <span> tags and colors them via
-     their own stylesheet. We force every text-bearing element inside a
-     label (and inside the form generally) to use cream, then re-tint
-     just the required-asterisk back to vermilion afterward.
+     FORM — ALL TEXT WHITE
+     v2 embed renders inline so these rules now apply.
      ============================ */
-  .form-inner form label,
-  .form-inner form label *,
-  .form-inner form legend,
-  .form-inner form .hs-form-field > label,
-  .form-inner form .hs-form-field > label > span,
-  .form-inner form .hs-field-desc,
-  .form-inner form .hs-form-checkbox-display,
-  .form-inner form .hs-form-checkbox-display span,
-  .form-inner form .hs-form-radio-display,
-  .form-inner form .hs-form-radio-display span,
-  .form-inner form .hs-form-booleancheckbox-display,
-  .form-inner form .hs-form-booleancheckbox-display span,
-  .form-inner form ul.inputs-list li label,
-  .form-inner form ul.inputs-list li label span,
-  .form-inner form .legal-consent-container,
-  .form-inner form .legal-consent-container * {
-    color: #F4E8D8 !important;
+  .form-inner form,
+  .form-inner form *,
+  .form-inner .hs-form,
+  .form-inner .hs-form * {
+    color: #FFFFFF !important;
   }
 
-  /* Field labels — small mono caps */
+  /* Field labels — small mono caps, white */
   .form-inner form .hs-form-field > label,
-  .form-inner form .hs-form-field > label > span {
+  .form-inner form .hs-form-field > label > span,
+  .form-inner form label {
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     font-weight: 400 !important;
     font-size: 11px !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
+    color: #FFFFFF !important;
     margin-bottom: 8px !important;
     display: inline-block !important;
   }
 
-  /* Required-asterisk re-tinted vermilion (must come after the cream rule above) */
+  /* Required-asterisk vermilion */
   .form-inner form .hs-form-required,
   .form-inner form label .hs-form-required,
-  .form-inner form label > span.hs-form-required,
   .form-inner form span.hs-form-required {
     color: #E94B26 !important;
     margin-left: 2px !important;
@@ -218,6 +189,10 @@
   }
 
   /* Checkbox / radio option text — sentence case, slightly bigger */
+  .form-inner form ul.inputs-list,
+  .form-inner form ul.inputs-list * {
+    color: #FFFFFF !important;
+  }
   .form-inner form ul.inputs-list label,
   .form-inner form ul.inputs-list label span,
   .form-inner form .hs-form-checkbox-display span,
@@ -237,9 +212,14 @@
     margin-bottom: 8px !important;
   }
 
-  /* ============================
-     INPUT FIELDS
-     ============================ */
+  /* Field descriptors */
+  .form-inner form .hs-field-desc {
+    color: rgba(255,255,255,0.55) !important;
+    font-size: 11px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Inputs — transparent w/ underline */
   .form-inner form input[type="text"],
   .form-inner form input[type="email"],
   .form-inner form input[type="tel"],
@@ -249,10 +229,10 @@
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     font-weight: 400 !important;
     font-size: 14px !important;
-    color: #F4E8D8 !important;
+    color: #FFFFFF !important;
     background: transparent !important;
     border: 0 !important;
-    border-bottom: 1px solid rgba(244,232,216,0.18) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.22) !important;
     border-radius: 0 !important;
     padding: 14px 0 !important;
     width: 100% !important;
@@ -263,7 +243,7 @@
 
   .form-inner form input::placeholder,
   .form-inner form textarea::placeholder {
-    color: rgba(244,232,216,0.55) !important;
+    color: rgba(255,255,255,0.45) !important;
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
   }
 
@@ -276,12 +256,13 @@
   .form-inner form input[type="checkbox"],
   .form-inner form input[type="radio"] {
     accent-color: #E94B26 !important;
+    width: auto !important;
   }
 
-  /* Errors */
-  .form-inner form .hs-error-msgs label,
-  .form-inner form .hs-error-msg,
-  .form-inner form .hs-error-msgs label * {
+  /* Errors — vermilion */
+  .form-inner form .hs-error-msgs,
+  .form-inner form .hs-error-msgs *,
+  .form-inner form .hs-error-msg {
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     color: #E94B26 !important;
     font-size: 11px !important;
@@ -292,7 +273,6 @@
 
   /* Submit button */
   .form-inner form input[type="submit"],
-  .form-inner form button[type="submit"],
   .form-inner form .hs-button {
     font-family: 'JetBrains Mono', ui-monospace, monospace !important;
     font-weight: 500 !important;
@@ -300,7 +280,7 @@
     letter-spacing: 0.24em !important;
     text-transform: uppercase !important;
     background: #E94B26 !important;
-    color: #F4E8D8 !important;
+    color: #FFFFFF !important;
     border: 1px solid #E94B26 !important;
     padding: 18px 40px !important;
     border-radius: 0 !important;
@@ -312,11 +292,19 @@
   }
 
   .form-inner form input[type="submit"]:hover,
-  .form-inner form button[type="submit"]:hover,
   .form-inner form .hs-button:hover {
-    background: #F4E8D8 !important;
+    background: #FFFFFF !important;
     color: #E94B26 !important;
-    border-color: #F4E8D8 !important;
+    border-color: #FFFFFF !important;
+  }
+
+  /* Legal/consent text */
+  .form-inner form .legal-consent-container,
+  .form-inner form .legal-consent-container * {
+    color: #FFFFFF !important;
+    font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
   }
 
   /* Post-submit "thank you" */
@@ -326,7 +314,7 @@
     font-style: italic !important;
     font-weight: 400 !important;
     font-size: clamp(28px, 4vw, 40px) !important;
-    color: #F4E8D8 !important;
+    color: #FFFFFF !important;
     line-height: 1.2 !important;
   }
 
@@ -337,20 +325,18 @@
     max-width: 100% !important;
   }
 
-  /* Form frame width */
-  .form-inner .hs-form-frame,
   .form-inner form { width: 100% !important; }
 
   /* ============================
      FOOTER
      ============================ */
   .footer {
-    border-top: 1px solid var(--cream-line);
+    border-top: 1px solid var(--white-line);
     padding: 32px;
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--cream-dim);
+    color: rgba(244,232,216,0.55);
   }
 
   .footer-top,
@@ -416,8 +402,36 @@
     <div class="form-inner">
       <h2 class="form-headline">Introduce yourself.</h2>
 
-      <!-- HubSpot Form Embed -->
-      <div class="hs-form-frame" data-region="na2" data-form-id="56986621-26f7-4c81-b468-5b8999527218" data-portal-id="245902043"></div>
+      <!-- HubSpot v2 inline embed: form renders directly into #soundbath-form,
+           so all the CSS above applies to its fields, labels, and button. -->
+      <div id="soundbath-form"></div>
+      <script>
+        if (window.hbspt && window.hbspt.forms) {
+          hbspt.forms.create({
+            region: "na2",
+            portalId: "245902043",
+            formId: "56986621-26f7-4c81-b468-5b8999527218",
+            target: "#soundbath-form"
+          });
+        } else {
+          // Script may load after this block — wait for it
+          document.addEventListener("DOMContentLoaded", function () {
+            var tryCreate = function () {
+              if (window.hbspt && window.hbspt.forms) {
+                hbspt.forms.create({
+                  region: "na2",
+                  portalId: "245902043",
+                  formId: "56986621-26f7-4c81-b468-5b8999527218",
+                  target: "#soundbath-form"
+                });
+              } else {
+                setTimeout(tryCreate, 100);
+              }
+            };
+            tryCreate();
+          });
+        }
+      </script>
     </div>
   </section>
 
@@ -427,13 +441,12 @@
       <div class="footer-brand">Soundbath</div>
       <div class="footer-meta">
         <div>Miami &middot; Bathhouse 01</div>
-        <div>Est. 2027</div>
+        <div>Est. 2026</div>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-links">
         <a href="https://instagram.com/thisissoundbath" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://tiktok.com/@thisissoundbath" target="_blank" rel="noopener">TikTok</a>
         <a href="mailto:hello@thisissoundbath.com">Contact</a>
       </div>
       <div>&copy; 2026</div>
