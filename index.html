@@ -17,9 +17,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-  /* ============================
-     RESET
-     ============================ */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   img, svg { max-width: 100%; display: block; }
@@ -28,343 +25,221 @@
 
   body {
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #F4E8D8;
-    background: #3A0E08;
+    font-weight: 400; font-size: 14px; line-height: 1.6;
+    color: #F4E8D8; background: #3A0E08;
     overflow-x: hidden;
   }
 
-  /* ============================
-     HEADER
-     ============================ */
   .header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #3A0E08;
+    position: sticky; top: 0; z-index: 10; background: #3A0E08;
     padding: 22px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: #E94B26;
   }
 
-  /* ============================
-     HERO
-     ============================ */
   .hero {
     min-height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 32px 48px;
-    position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 64px 32px; position: relative;
   }
-  .wordmark-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-  }
-  .wordmark-svg text {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
-    font-size: 300px;
-    fill: #E94B26;
-  }
-  .hero-subline {
-    margin-top: 24px;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: #F4E8D8;
-    max-width: 640px;
-  }
+  .wordmark-svg { display: block; width: 100%; height: auto; margin: 0; overflow: visible; }
+  .wordmark-svg text { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 300px; fill: #E94B26; }
+  .hero-subline { margin-top: 24px; font-size: 13px; letter-spacing: 0.04em; color: #F4E8D8; max-width: 640px; }
 
-  /* ============================
-     SECTION 1 — single line
-     ============================ */
   .section-line {
-    padding: clamp(96px, 14vh, 160px) 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    padding: clamp(64px, 9vh, 110px) 24px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
   }
   .section-line p {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 400;
-    font-style: italic;
+    font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-style: italic;
     color: #F4E8D8;
-    font-size: clamp(24px, 3.4vw, 40px);
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    max-width: 22ch;
+    font-size: clamp(22px, 3.2vw, 38px);
+    line-height: 1.25; letter-spacing: -0.01em;
+    max-width: none; white-space: nowrap;
+  }
+  @media (max-width: 540px) {
+    .section-line p { white-space: normal; max-width: 24ch; font-size: 22px; }
   }
 
-  /* ============================
-     SECTION 2 — FORM
-     ============================ */
   .form-section {
-    padding: clamp(80px, 12vh, 140px) 32px;
+    padding: clamp(64px, 10vh, 120px) 32px;
     border-top: 1px solid rgba(244,232,216,0.18);
   }
-  .form-inner {
-    max-width: 560px;
-    margin: 0 auto;
-  }
+  .form-inner { max-width: 600px; margin: 0 auto; }
+
   .form-headline {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
-    color: #F4E8D8;
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.015em;
-    margin-bottom: 56px;
+    font-family: 'Fraunces', Georgia, serif; font-weight: 500; color: #F4E8D8;
+    font-size: clamp(36px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.015em;
+    margin-bottom: 16px;
+  }
+  .form-step-headline {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 500; color: #F4E8D8;
+    font-size: clamp(28px, 4.4vw, 44px); line-height: 1.1; letter-spacing: -0.015em;
+    margin-bottom: 16px;
+  }
+  .form-step-indicator {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #E94B26;
+    margin-bottom: 32px;
+  }
+  .form-step-sub {
+    font-family: 'Fraunces', Georgia, serif; font-style: italic;
+    font-size: 18px; color: rgba(244,232,216,0.75); margin-bottom: 48px; max-width: 50ch;
   }
 
-  /* ============================
-     CUSTOM FORM — every element
-     hardcoded white. No iframe.
-     ============================ */
-  .sb-form {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    width: 100%;
-  }
-
-  .sb-row-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-
-  .sb-field {
-    display: flex;
-    flex-direction: column;
-  }
+  .sb-form { display: flex; flex-direction: column; gap: 32px; width: 100%; }
+  .sb-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sb-field { display: flex; flex-direction: column; }
 
   .sb-label {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-weight: 400;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #F4E8D8;
+    font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #F4E8D8;
     margin-bottom: 10px;
   }
-  .sb-required {
-    color: #E94B26;
-    margin-left: 2px;
+  .sb-label-helper {
+    font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(244,232,216,0.55); margin-left: 8px; text-transform: none;
   }
+  .sb-required { color: #E94B26; margin-left: 2px; }
 
-  .sb-input,
-  .sb-select {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-weight: 400;
-    font-size: 14px;
-    color: #F4E8D8;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid rgba(244,232,216,0.22);
-    border-radius: 0;
-    padding: 12px 0;
-    width: 100%;
-    outline: none;
+  .sb-input, .sb-select, .sb-textarea {
+    font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 14px;
+    color: #F4E8D8; background: transparent; border: 0;
+    border-bottom: 1px solid rgba(244,232,216,0.22); border-radius: 0;
+    padding: 12px 0; width: 100%; outline: none;
     transition: border-color 0.2s ease;
-    -webkit-appearance: none;
-    appearance: none;
+    -webkit-appearance: none; appearance: none;
   }
-  .sb-input::placeholder {
-    color: rgba(244,232,216,0.45);
-  }
-  .sb-input:focus,
-  .sb-select:focus {
-    border-bottom-color: #E94B26;
-  }
+  .sb-textarea { resize: vertical; min-height: 80px; }
+  .sb-input::placeholder, .sb-textarea::placeholder { color: rgba(244,232,216,0.45); }
+  .sb-input:focus, .sb-select:focus, .sb-textarea:focus { border-bottom-color: #E94B26; }
 
-  /* Phone country prefix lock */
-  .sb-phone-row {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 12px;
-    align-items: end;
-  }
+  .sb-phone-row { display: grid; grid-template-columns: 60px 1fr; gap: 12px; align-items: end; }
   .sb-prefix {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 14px;
-    color: #F4E8D8;
-    border-bottom: 1px solid rgba(244,232,216,0.22);
-    padding: 12px 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F4E8D8;
+    border-bottom: 1px solid rgba(244,232,216,0.22); padding: 12px 0;
   }
 
-  /* Interest Area — checkbox group */
-  .sb-checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .sb-ig-row { display: grid; grid-template-columns: 24px 1fr; gap: 6px; align-items: end; }
+  .sb-ig-prefix {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F4E8D8;
+    border-bottom: 1px solid rgba(244,232,216,0.22); padding: 12px 0; text-align: center;
   }
-  .sb-check {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    user-select: none;
-  }
+
+  .sb-checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+  .sb-check { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; }
   .sb-check input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid rgba(244,232,216,0.4);
-    background: transparent;
-    border-radius: 0;
-    cursor: pointer;
-    position: relative;
-    flex-shrink: 0;
+    appearance: none; -webkit-appearance: none;
+    width: 16px; height: 16px;
+    border: 1px solid rgba(244,232,216,0.4); background: transparent;
+    border-radius: 0; cursor: pointer; position: relative; flex-shrink: 0;
+    margin-top: 2px;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
-  .sb-check input[type="checkbox"]:hover {
-    border-color: #E94B26;
-  }
-  .sb-check input[type="checkbox"]:checked {
-    background: #E94B26;
-    border-color: #E94B26;
-  }
+  .sb-check input[type="checkbox"]:hover { border-color: #E94B26; }
+  .sb-check input[type="checkbox"]:checked { background: #E94B26; border-color: #E94B26; }
   .sb-check input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 5px;
-    width: 4px;
-    height: 8px;
-    border-right: 2px solid #F4E8D8;
-    border-bottom: 2px solid #F4E8D8;
+    content: ""; position: absolute; top: 2px; left: 5px; width: 4px; height: 8px;
+    border-right: 2px solid #F4E8D8; border-bottom: 2px solid #F4E8D8;
     transform: rotate(45deg);
   }
   .sb-check-label {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 13px;
-    color: #F4E8D8;
-    line-height: 1.4;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F4E8D8; line-height: 1.5;
   }
 
-  /* Consent line */
-  .sb-consent {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    cursor: pointer;
-    user-select: none;
-    padding-top: 8px;
+  .sb-rank-prompt {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-style: italic;
+    font-size: 16px; color: rgba(244,232,216,0.75);
+    margin-bottom: 16px; line-height: 1.4;
   }
-  .sb-consent .sb-check-label {
-    font-size: 12px;
-    color: rgba(244,232,216,0.75);
-    line-height: 1.55;
+  .sb-rank { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .sb-rank-card {
+    display: grid; grid-template-columns: 32px 1fr auto; gap: 16px;
+    align-items: center; padding: 18px 20px;
+    border: 1px solid rgba(244,232,216,0.22); background: transparent;
+    cursor: grab; user-select: none;
+    transition: border-color 0.2s ease, background 0.15s ease;
+  }
+  .sb-rank-card:hover { border-color: #E94B26; }
+  .sb-rank-card.dragging { opacity: 0.4; cursor: grabbing; }
+  .sb-rank-card.drag-over { border-color: #E94B26; background: rgba(233,75,38,0.08); }
+  .sb-rank-num { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px; color: #E94B26; line-height: 1; }
+  .sb-rank-name { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 18px; color: #F4E8D8; }
+  .sb-rank-desc {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.04em; color: rgba(244,232,216,0.55);
+    margin-top: 4px; line-height: 1.5;
+  }
+  .sb-rank-handle {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    color: rgba(244,232,216,0.4); letter-spacing: 0.1em;
   }
 
-  /* Submit */
+  .sb-consent { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; padding-top: 8px; }
+  .sb-consent .sb-check-label { font-size: 12px; color: rgba(244,232,216,0.75); line-height: 1.55; }
+
   .sb-submit {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    background: #E94B26;
-    color: #F4E8D8;
-    border: 1px solid #E94B26;
-    padding: 18px 40px;
-    border-radius: 0;
-    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    background: #E94B26; color: #F4E8D8; border: 1px solid #E94B26;
+    padding: 18px 40px; border-radius: 0; cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    align-self: flex-start;
-    margin-top: 8px;
+    align-self: flex-start; margin-top: 8px;
   }
   .sb-submit:hover:not(:disabled) {
-    background: #F4E8D8;
-    color: #E94B26;
-    border-color: #F4E8D8;
+    background: #F4E8D8; color: #E94B26; border-color: #F4E8D8;
   }
-  .sb-submit:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .sb-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* Error message */
+  .sb-back {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,232,216,0.55);
+    background: transparent; border: 0; cursor: pointer; padding: 8px 0;
+    margin-top: 16px; align-self: flex-start;
+    transition: color 0.2s ease;
+  }
+  .sb-back:hover { color: #E94B26; }
+
   .sb-error {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    color: #E94B26;
-    font-size: 11px;
-    text-transform: lowercase;
-    margin-top: 6px;
-    display: none;
+    font-family: 'JetBrains Mono', monospace; color: #E94B26;
+    font-size: 11px; text-transform: lowercase; margin-top: 6px; display: none;
   }
   .sb-field.has-error .sb-error { display: block; }
   .sb-field.has-error .sb-input,
-  .sb-field.has-error .sb-select {
-    border-bottom-color: #E94B26;
-  }
+  .sb-field.has-error .sb-textarea,
+  .sb-field.has-error .sb-prefix,
+  .sb-field.has-error .sb-ig-prefix { border-bottom-color: #E94B26; }
 
-  /* Form-level message */
   .sb-form-error {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    color: #E94B26;
-    font-size: 13px;
-    margin-top: 16px;
-    display: none;
+    font-family: 'JetBrains Mono', monospace; color: #E94B26;
+    font-size: 13px; margin-top: 16px; display: none;
   }
   .sb-form-error.visible { display: block; }
 
-  /* Success state — replaces form in place */
-  .sb-success {
-    display: none;
-  }
-  .sb-success.visible {
-    display: block;
-  }
+  .sb-step { display: none; opacity: 0; transition: opacity 0.25s ease; }
+  .sb-step.active { display: flex; flex-direction: column; gap: 32px; opacity: 1; }
+  .sb-step.fading-out { opacity: 0; }
+
+  .sb-success { display: none; }
+  .sb-success.visible { display: block; }
   .sb-success p {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.2;
-    color: #F4E8D8;
+    font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-style: italic;
+    font-size: clamp(28px, 4vw, 44px); line-height: 1.2; color: #F4E8D8;
   }
-  .sb-success .sb-success-sig {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-style: normal;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #E94B26;
-    margin-top: 24px;
+  .sb-success-sig {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #E94B26; margin-top: 24px;
   }
 
-  /* ============================
-     FOOTER
-     ============================ */
   .footer {
-    border-top: 1px solid rgba(244,232,216,0.18);
-    padding: 32px;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    border-top: 1px solid rgba(244,232,216,0.18); padding: 32px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(244,232,216,0.55);
   }
-  .footer-top,
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
-  }
+  .footer-top, .footer-bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
   .footer-top { margin-bottom: 32px; }
   .footer-brand { color: #E94B26; }
   .footer-meta { text-align: right; line-height: 1.8; }
@@ -372,35 +247,26 @@
   .footer-links a { transition: color 0.2s ease; }
   .footer-links a:hover { color: #E94B26; }
 
-  /* ============================
-     RESPONSIVE
-     ============================ */
   @media (max-width: 640px) {
     .header { padding: 18px 20px; font-size: 10px; letter-spacing: 0.14em; }
-    .hero { padding: 0 20px 36px; }
-    .hero-subline { font-size: 12px; }
-    .section-line { padding: 80px 20px; }
-    .form-section { padding: 80px 20px; }
+    .hero { padding: 40px 20px; }
+    .form-section { padding: 64px 20px; }
     .footer { padding: 24px 20px; }
     .sb-row-2 { grid-template-columns: 1fr; gap: 32px; }
-    .footer-top, .footer-bottom {
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-    }
+    .sb-rank-card { grid-template-columns: 32px 1fr; }
+    .sb-rank-handle { display: none; }
+    .footer-top, .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; }
     .footer-meta { text-align: left; }
   }
 </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="header">
     <span>Miami, FL</span>
     <span>Bathhouse 01</span>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <h1 aria-label="SOUNDBATH" style="margin:0;">
       <svg class="wordmark-svg" viewBox="0 0 2000 340" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true">
@@ -410,25 +276,28 @@
     <p class="hero-subline">A music-driven, community-led bathhouse. Coming to Miami.</p>
   </section>
 
-  <!-- SECTION 1 -->
   <section class="section-line">
     <p>This is where wellness meets wildness.</p>
   </section>
 
-  <!-- SECTION 2 — CUSTOM FORM (no iframe, full styling control) -->
   <section class="form-section" id="form">
     <div class="form-inner">
-      <h2 class="form-headline">Introduce yourself.</h2>
 
-      <form class="sb-form" id="sb-form" novalidate>
+      <!-- ============ STEP 1 — IDENTITY ============ -->
+      <div class="sb-step active" id="sb-step-1">
+        <div>
+          <div class="form-step-indicator">01 / 02 &middot; Identity</div>
+          <h2 class="form-headline">Introduce yourself.</h2>
+        </div>
+
         <div class="sb-row-2">
           <div class="sb-field" data-field="firstname">
-            <label class="sb-label" for="sb-firstname">First Name<span class="sb-required">*</span></label>
+            <label class="sb-label" for="sb-firstname">First name<span class="sb-required">*</span></label>
             <input class="sb-input" type="text" id="sb-firstname" name="firstname" required autocomplete="given-name">
             <div class="sb-error">required</div>
           </div>
           <div class="sb-field" data-field="lastname">
-            <label class="sb-label" for="sb-lastname">Last Name<span class="sb-required">*</span></label>
+            <label class="sb-label" for="sb-lastname">Last name<span class="sb-required">*</span></label>
             <input class="sb-input" type="text" id="sb-lastname" name="lastname" required autocomplete="family-name">
             <div class="sb-error">required</div>
           </div>
@@ -441,39 +310,23 @@
         </div>
 
         <div class="sb-field" data-field="phone">
-          <label class="sb-label" for="sb-phone">Phone Number<span class="sb-required">*</span></label>
+          <label class="sb-label" for="sb-phone">
+            Mobile <span class="sb-label-helper">for event invitations only</span>
+          </label>
           <div class="sb-phone-row">
             <div class="sb-prefix">+1</div>
-            <input class="sb-input" type="tel" id="sb-phone" name="phone" required autocomplete="tel-national" placeholder="(305) 000 0000">
+            <input class="sb-input" type="tel" id="sb-phone" name="phone" autocomplete="tel-national" placeholder="(305) 000 0000">
           </div>
-          <div class="sb-error">required</div>
         </div>
 
-        <div class="sb-field" data-field="interest_area">
-          <span class="sb-label">Interest Area<span class="sb-required">*</span></span>
-          <div class="sb-checkbox-group">
-            <label class="sb-check">
-              <input type="checkbox" name="interest_area" value="Sound Healing">
-              <span class="sb-check-label">Sound Healing</span>
-            </label>
-            <label class="sb-check">
-              <input type="checkbox" name="interest_area" value="Thermal Wellness">
-              <span class="sb-check-label">Thermal Wellness</span>
-            </label>
-            <label class="sb-check">
-              <input type="checkbox" name="interest_area" value="Music Events">
-              <span class="sb-check-label">Music Events</span>
-            </label>
-            <label class="sb-check">
-              <input type="checkbox" name="interest_area" value="Community">
-              <span class="sb-check-label">Community</span>
-            </label>
-            <label class="sb-check">
-              <input type="checkbox" name="interest_area" value="Plant Medicine Ceremonies">
-              <span class="sb-check-label">Plant Medicine Ceremonies</span>
-            </label>
+        <div class="sb-field" data-field="instagram_handle">
+          <label class="sb-label" for="sb-instagram">
+            Instagram handle <span class="sb-label-helper">optional</span>
+          </label>
+          <div class="sb-ig-row">
+            <div class="sb-ig-prefix">@</div>
+            <input class="sb-input" type="text" id="sb-instagram" name="instagram_handle" autocomplete="off" placeholder="yourhandle">
           </div>
-          <div class="sb-error">select at least one</div>
         </div>
 
         <label class="sb-consent">
@@ -481,22 +334,100 @@
           <span class="sb-check-label">I agree to receive emails from Soundbath. We will never share your information.</span>
         </label>
 
-        <button type="submit" class="sb-submit" id="sb-submit">Send</button>
+        <button type="button" class="sb-submit" id="sb-step1-submit">Continue</button>
 
-        <div class="sb-form-error" id="sb-form-error">
+        <div class="sb-form-error" id="sb-step1-error">
           Something went wrong. Please try again, or email hello@thisissoundbath.com.
         </div>
-      </form>
+      </div>
 
-      <!-- Success state replaces the form in place -->
+      <!-- ============ STEP 2 ============ -->
+      <div class="sb-step" id="sb-step-2">
+        <div>
+          <div class="form-step-indicator">02 / 02 &middot; A little more</div>
+          <h2 class="form-step-headline">Tell us a little more.</h2>
+          <p class="form-step-sub">Every field is a question we'd ask a guest at dinner.</p>
+        </div>
+
+        <div class="sb-field" data-field="rank">
+          <span class="sb-label">Rank the four foundations</span>
+          <p class="sb-rank-prompt">Soundbath is built on four foundations. Drag to rank them from most to least resonant for you.</p>
+          <div class="sb-rank" id="sb-rank-list">
+            <div class="sb-rank-card" draggable="true" data-key="baths">
+              <div class="sb-rank-num">1</div>
+              <div>
+                <div class="sb-rank-name">Baths</div>
+                <div class="sb-rank-desc">Physical reset, contrast therapy, sauna ritual</div>
+              </div>
+              <div class="sb-rank-handle">::</div>
+            </div>
+            <div class="sb-rank-card" draggable="true" data-key="sound">
+              <div class="sb-rank-num">2</div>
+              <div>
+                <div class="sb-rank-name">Sound</div>
+                <div class="sb-rank-desc">Live music, listening sessions, sonic immersion</div>
+              </div>
+              <div class="sb-rank-handle">::</div>
+            </div>
+            <div class="sb-rank-card" draggable="true" data-key="programming">
+              <div class="sb-rank-num">3</div>
+              <div>
+                <div class="sb-rank-name">Programming</div>
+                <div class="sb-rank-desc">Talks, learning, deep conversation</div>
+              </div>
+              <div class="sb-rank-handle">::</div>
+            </div>
+            <div class="sb-rank-card" draggable="true" data-key="community">
+              <div class="sb-rank-num">4</div>
+              <div>
+                <div class="sb-rank-name">Community</div>
+                <div class="sb-rank-desc">Gathering, hosting, belonging</div>
+              </div>
+              <div class="sb-rank-handle">::</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-field" data-field="participation">
+          <span class="sb-label">How would you like to participate?</span>
+          <div class="sb-checkbox-group" style="margin-top:12px;">
+            <label class="sb-check"><input type="checkbox" name="participation" value="Attend pre-launch events"><span class="sb-check-label">Attend pre-launch events</span></label>
+            <label class="sb-check"><input type="checkbox" name="participation" value="Host or co-create programming"><span class="sb-check-label">Host or co-create programming</span></label>
+            <label class="sb-check"><input type="checkbox" name="participation" value="Introduce friends to the community"><span class="sb-check-label">Introduce friends to the community</span></label>
+            <label class="sb-check"><input type="checkbox" name="participation" value="Just keep me in the loop for now"><span class="sb-check-label">Just keep me in the loop for now</span></label>
+          </div>
+        </div>
+
+        <div class="sb-field" data-field="miami_communities">
+          <label class="sb-label" for="sb-communities">
+            Which communities are you a part of in Miami or beyond? <span class="sb-label-helper">optional</span>
+          </label>
+          <textarea class="sb-textarea" id="sb-communities" name="miami_communities" rows="3" placeholder="Members clubs, Burning Man, Summit Series, padel league, non-profit, book club, etc."></textarea>
+        </div>
+
+        <div class="sb-field" data-field="community_contribution">
+          <label class="sb-label" for="sb-contribution">
+            A community or gathering you've helped create or contribute to <span class="sb-label-helper">optional</span>
+          </label>
+          <textarea class="sb-textarea" id="sb-contribution" name="community_contribution" rows="3" placeholder="Tell us briefly."></textarea>
+        </div>
+
+        <button type="button" class="sb-submit" id="sb-step2-submit">Send</button>
+        <button type="button" class="sb-back" id="sb-step2-back">&larr; Back to Identity</button>
+
+        <div class="sb-form-error" id="sb-step2-error">
+          Something went wrong. Please try again, or email hello@thisissoundbath.com.
+        </div>
+      </div>
+
       <div class="sb-success" id="sb-success" aria-live="polite">
         <p><em>Received.</em></p>
         <div class="sb-success-sig">&mdash; Soundbath</div>
       </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">Soundbath</div>
@@ -514,122 +445,288 @@
     </div>
   </footer>
 
-  <!-- ============================
-       FORM SUBMISSION → HubSpot Forms API
-       Submits a v3 integration submission. HubSpot still triggers any
-       workflows tied to this form ID, so the welcome email fires the
-       same way it does with the embed.
-       ============================ -->
   <script>
     (function () {
-      var PORTAL_ID = '245902043';
-      var FORM_ID   = '56986621-26f7-4c81-b468-5b8999527218';
-      var ENDPOINT  = 'https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_ID;
+      // ===================================================================
+      // SUBMISSION CONFIG
+      //   'worker'  → POST to Cloudflare Worker (HubSpot + Resend + reminders)
+      //   'hubspot' → POST direct to HubSpot Forms API v3 (no email reminders)
+      //   'zapier'  → POST flat JSON to Zapier catch hooks
+      // ===================================================================
+      var TRANSPORT = 'hubspot';
 
-      var form        = document.getElementById('sb-form');
-      var successEl   = document.getElementById('sb-success');
-      var formError   = document.getElementById('sb-form-error');
-      var submitBtn   = document.getElementById('sb-submit');
+      // --- Cloudflare Worker (active) ---
+      // Set after deploying the Worker (cloudflare-worker/ folder). Strip trailing slash.
+      var WORKER_URL = 'REPLACE_WITH_WORKER_URL';
+      var WORKER_ENDPOINT_STEP1 = WORKER_URL + '/step1';
+      var WORKER_ENDPOINT_STEP2 = WORKER_URL + '/step2';
 
-      function setFieldError(fieldName, hasError) {
-        var field = form.querySelector('.sb-field[data-field="' + fieldName + '"]');
-        if (!field) return;
-        field.classList.toggle('has-error', hasError);
+      // --- HubSpot direct (legacy fallback) ---
+      var PORTAL_ID      = '245902043';
+      var FORM_ID_STEP1  = '56986621-26f7-4c81-b468-5b8999527218';
+      var FORM_ID_STEP2  = '2f25c029-d9c6-43df-8e46-be1091357ffa';
+      var HS_ENDPOINT_STEP1 = 'https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_ID_STEP1;
+      var HS_ENDPOINT_STEP2 = 'https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL_ID + '/' + FORM_ID_STEP2;
+
+      // --- Zapier (future) ---
+      var ZAPIER_WEBHOOK_STEP1 = 'REPLACE_WITH_ZAPIER_STEP1_WEBHOOK';
+      var ZAPIER_WEBHOOK_STEP2 = 'REPLACE_WITH_ZAPIER_STEP2_WEBHOOK';
+
+      var ENDPOINT_STEP1 = (TRANSPORT === 'worker')  ? WORKER_ENDPOINT_STEP1
+                         : (TRANSPORT === 'hubspot') ? HS_ENDPOINT_STEP1
+                                                     : ZAPIER_WEBHOOK_STEP1;
+      var ENDPOINT_STEP2 = (TRANSPORT === 'worker')  ? WORKER_ENDPOINT_STEP2
+                         : (TRANSPORT === 'hubspot') ? HS_ENDPOINT_STEP2
+                                                     : ZAPIER_WEBHOOK_STEP2;
+
+      function buildPayload(fieldsObj, opts) {
+        opts = opts || {};
+        if (TRANSPORT === 'hubspot') {
+          var fields = Object.keys(fieldsObj).map(function (k) {
+            return { objectTypeId: '0-1', name: k, value: fieldsObj[k] };
+          });
+          var p = {
+            fields: fields,
+            context: { pageUri: window.location.href, pageName: document.title }
+          };
+          if (opts.consent) {
+            p.legalConsentOptions = {
+              consent: {
+                consentToProcess: true,
+                text: 'I agree to receive emails from Soundbath. We will never share your information.',
+                communications: [{
+                  value: true, subscriptionTypeId: 999,
+                  text: 'I agree to receive marketing communications from Soundbath.'
+                }]
+              }
+            };
+          }
+          return p;
+        }
+        // worker / zapier — flat JSON
+        var flat = Object.assign({}, fieldsObj);
+        flat._meta = {
+          step: opts.step || null,
+          pageUri: window.location.href,
+          pageName: document.title,
+          consent: !!opts.consent
+        };
+        return flat;
       }
 
-      function clearAllErrors() {
-        form.querySelectorAll('.sb-field').forEach(function (f) { f.classList.remove('has-error'); });
-        formError.classList.remove('visible');
+      var stepOneData = null;
+
+      var step1 = document.getElementById('sb-step-1');
+      var step2 = document.getElementById('sb-step-2');
+      var success = document.getElementById('sb-success');
+
+      function setFieldError(name, hasError) {
+        var f = document.querySelector('.sb-field[data-field="' + name + '"]');
+        if (f) f.classList.toggle('has-error', hasError);
+      }
+      function clearErrors(scope) {
+        scope.querySelectorAll('.sb-field').forEach(function (f) { f.classList.remove('has-error'); });
+        scope.querySelectorAll('.sb-form-error').forEach(function (e) { e.classList.remove('visible'); });
+      }
+      function fadeTo(fromEl, toEl) {
+        fromEl.classList.add('fading-out');
+        setTimeout(function () {
+          fromEl.classList.remove('active');
+          fromEl.classList.remove('fading-out');
+          toEl.classList.add('active');
+          void toEl.offsetWidth;
+          window.scrollTo({ top: document.getElementById('form').offsetTop - 40, behavior: 'smooth' });
+        }, 250);
       }
 
-      function getCheckedInterests() {
-        var boxes = form.querySelectorAll('input[name="interest_area"]:checked');
-        return Array.from(boxes).map(function (b) { return b.value; });
+      // ===================================================================
+      // DEEP-LINK FROM REMINDER EMAIL — /?continue=<base64email>#form
+      // ===================================================================
+      function checkContinueParam() {
+        var params = new URLSearchParams(window.location.search);
+        var token = params.get('continue');
+        if (!token) return;
+        var email;
+        try {
+          var pad = token.length % 4 === 0 ? '' : '='.repeat(4 - (token.length % 4));
+          email = atob(token.replace(/-/g, '+').replace(/_/g, '/') + pad);
+        } catch (e) { return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+        stepOneData = { email: email, firstname: '', lastname: '' };
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        setTimeout(function () {
+          var formEl = document.getElementById('form');
+          if (formEl) window.scrollTo({ top: formEl.offsetTop - 40, behavior: 'smooth' });
+        }, 100);
       }
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        clearAllErrors();
+      // ============ STEP 1 ============
+      document.getElementById('sb-step1-submit').addEventListener('click', function () {
+        clearErrors(step1);
 
-        var firstname = form.firstname.value.trim();
-        var lastname  = form.lastname.value.trim();
-        var email     = form.email.value.trim();
-        var phone     = form.phone.value.trim();
-        var interests = getCheckedInterests();
-        var consent   = document.getElementById('sb-consent').checked;
+        var firstname = step1.querySelector('#sb-firstname').value.trim();
+        var lastname  = step1.querySelector('#sb-lastname').value.trim();
+        var email     = step1.querySelector('#sb-email').value.trim();
+        var phone     = step1.querySelector('#sb-phone').value.trim();
+        var igRaw     = step1.querySelector('#sb-instagram').value.trim();
+        var ig        = igRaw.replace(/^@/, '').replace(/^https?:\/\/(www\.)?instagram\.com\//, '').replace(/\/$/, '');
+        var consent   = step1.querySelector('#sb-consent').checked;
 
         var hasError = false;
         if (!firstname) { setFieldError('firstname', true); hasError = true; }
         if (!lastname)  { setFieldError('lastname',  true); hasError = true; }
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setFieldError('email', true); hasError = true; }
-        if (!phone)     { setFieldError('phone',     true); hasError = true; }
-        if (interests.length === 0) { setFieldError('interest_area', true); hasError = true; }
         if (!consent) { hasError = true; }
-
         if (hasError) return;
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
+        var btn = document.getElementById('sb-step1-submit');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
 
-        var payload = {
-          fields: [
-            { objectTypeId: '0-1', name: 'firstname', value: firstname },
-            { objectTypeId: '0-1', name: 'lastname',  value: lastname  },
-            { objectTypeId: '0-1', name: 'email',     value: email     },
-            { objectTypeId: '0-1', name: 'phone',     value: '+1 ' + phone },
-            { objectTypeId: '0-1', name: 'interest_area', value: interests.join(';') }
-          ],
-          context: {
-            pageUri: window.location.href,
-            pageName: document.title
-          },
-          legalConsentOptions: {
-            consent: {
-              consentToProcess: true,
-              text: 'I agree to receive emails from Soundbath. We will never share your information.',
-              communications: [{
-                value: true,
-                subscriptionTypeId: 999,
-                text: 'I agree to receive marketing communications from Soundbath.'
-              }]
-            }
-          }
+        var fieldsObj = {
+          firstname: firstname,
+          lastname:  lastname,
+          email:     email,
+          signup_step_completed: '1'
         };
+        if (phone) fieldsObj.phone = '+1 ' + phone;
+        if (ig)    fieldsObj.instagram_handle = ig;
 
-        fetch(ENDPOINT, {
+        var payload = buildPayload(fieldsObj, { step: 1, consent: true });
+
+        fetch(ENDPOINT_STEP1, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
         .then(function (res) {
-          if (!res.ok) {
-            return res.json().then(function (err) { throw err; });
-          }
+          if (!res.ok) return res.json().then(function (err) { throw err; }).catch(function () { throw new Error('HTTP ' + res.status); });
           return res.json();
         })
         .then(function () {
-          form.style.display = 'none';
-          successEl.classList.add('visible');
+          stepOneData = { firstname: firstname, lastname: lastname, email: email };
+          btn.textContent = 'Continue';
+          btn.disabled = false;
+          fadeTo(step1, step2);
         })
         .catch(function (err) {
-          console.error('Soundbath form submission error:', err);
-          formError.classList.add('visible');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send';
+          console.error('Step 1 submission error:', err);
+          document.getElementById('sb-step1-error').classList.add('visible');
+          btn.disabled = false;
+          btn.textContent = 'Continue';
         });
       });
 
-      // Live-clear errors when the user starts fixing a field
-      form.querySelectorAll('.sb-input, .sb-select, input[type="checkbox"]').forEach(function (el) {
-        el.addEventListener('input',  function () {
-          var field = el.closest('.sb-field');
-          if (field) field.classList.remove('has-error');
+      // ============ STEP 2 — drag-to-rank ============
+      var rankList = document.getElementById('sb-rank-list');
+      var draggedCard = null;
+
+      function refreshRankNumbers() {
+        var cards = rankList.querySelectorAll('.sb-rank-card');
+        cards.forEach(function (card, i) {
+          card.querySelector('.sb-rank-num').textContent = i + 1;
         });
-        el.addEventListener('change', function () {
-          var field = el.closest('.sb-field');
-          if (field) field.classList.remove('has-error');
+      }
+
+      rankList.addEventListener('dragstart', function (e) {
+        var card = e.target.closest('.sb-rank-card');
+        if (!card) return;
+        draggedCard = card;
+        card.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        try { e.dataTransfer.setData('text/plain', card.dataset.key); } catch (err) {}
+      });
+      rankList.addEventListener('dragend', function () {
+        if (draggedCard) draggedCard.classList.remove('dragging');
+        rankList.querySelectorAll('.sb-rank-card').forEach(function (c) { c.classList.remove('drag-over'); });
+        draggedCard = null;
+      });
+      rankList.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        var target = e.target.closest('.sb-rank-card');
+        if (!target || target === draggedCard) return;
+        rankList.querySelectorAll('.sb-rank-card').forEach(function (c) { c.classList.remove('drag-over'); });
+        target.classList.add('drag-over');
+      });
+      rankList.addEventListener('drop', function (e) {
+        e.preventDefault();
+        var target = e.target.closest('.sb-rank-card');
+        if (!target || !draggedCard || target === draggedCard) return;
+        var allCards = Array.from(rankList.children);
+        var draggedIdx = allCards.indexOf(draggedCard);
+        var targetIdx  = allCards.indexOf(target);
+        if (draggedIdx < targetIdx) rankList.insertBefore(draggedCard, target.nextSibling);
+        else rankList.insertBefore(draggedCard, target);
+        rankList.querySelectorAll('.sb-rank-card').forEach(function (c) { c.classList.remove('drag-over'); });
+        refreshRankNumbers();
+      });
+
+      // ============ STEP 2 SUBMIT ============
+      document.getElementById('sb-step2-submit').addEventListener('click', function () {
+        clearErrors(step2);
+
+        var communities    = step2.querySelector('#sb-communities').value.trim();
+        var contribution   = step2.querySelector('#sb-contribution').value.trim();
+        var participation  = Array.from(step2.querySelectorAll('input[name="participation"]:checked')).map(function (b) { return b.value; });
+
+        var rankCards = rankList.querySelectorAll('.sb-rank-card');
+        var ranks = {};
+        rankCards.forEach(function (card, i) { ranks[card.dataset.key] = (i + 1).toString(); });
+
+        var btn = document.getElementById('sb-step2-submit');
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        var fieldsObj = {
+          email:                 stepOneData.email,
+          firstname:             stepOneData.firstname,
+          lastname:              stepOneData.lastname,
+          rank_baths:            ranks.baths,
+          rank_sound:            ranks.sound,
+          rank_programming:      ranks.programming,
+          rank_community:        ranks.community,
+          signup_step_completed: '2'
+        };
+        if (communities)            fieldsObj.miami_communities      = communities;
+        if (contribution)           fieldsObj.community_contribution = contribution;
+        if (participation.length)   fieldsObj.participation          = participation.join(';');
+
+        var payload = buildPayload(fieldsObj, { step: 2 });
+
+        fetch(ENDPOINT_STEP2, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function (res) {
+          if (!res.ok) return res.json().then(function (err) { throw err; }).catch(function () { throw new Error('HTTP ' + res.status); });
+          return res.json();
+        })
+        .then(function () {
+          step2.classList.remove('active');
+          success.classList.add('visible');
+          window.scrollTo({ top: document.getElementById('form').offsetTop - 40, behavior: 'smooth' });
+        })
+        .catch(function (err) {
+          console.error('Step 2 submission error:', err);
+          document.getElementById('sb-step2-error').classList.add('visible');
+          btn.disabled = false;
+          btn.textContent = 'Send';
         });
       });
+
+      document.getElementById('sb-step2-back').addEventListener('click', function () {
+        fadeTo(step2, step1);
+      });
+
+      document.querySelectorAll('.sb-input, .sb-textarea, input[type="checkbox"]').forEach(function (el) {
+        el.addEventListener('input',  function () { var f = el.closest('.sb-field'); if (f) f.classList.remove('has-error'); });
+        el.addEventListener('change', function () { var f = el.closest('.sb-field'); if (f) f.classList.remove('has-error'); });
+      });
+
+      // Run deep-link check on page load
+      checkContinueParam();
     })();
   </script>
 
